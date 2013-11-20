@@ -48,6 +48,13 @@ class HTMLToTextileParser < SgmlParser
   end
   
   def build_styles_ids_and_classes(attributes)
+    # TDH 11/20/2013
+    # Adding classes and styles screws up the plain text
+    # that we use in emails/FB/Twitter, etc. 
+    # So we always return a blank string
+    # Comment the following line if you want to start
+    # including classes and styles again
+    return ''
     idclass = ''
     idclass += attributes['class'] if attributes.has_key?('class')
     idclass += "\##{attributes['id']}" if attributes.has_key?('id')
