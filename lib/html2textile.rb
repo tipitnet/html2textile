@@ -18,10 +18,12 @@ require 'sgml_parser'
 #   puts parser.to_textile
 class HTMLToTextileParser < SgmlParser
 
-  PAIRS = { 'blockquote' => 'bq', 'p' => 'p' }
+  # TDH removed span from quicktags and set p to empty string
+  # removed blockquote pair
+  PAIRS = { 'p' => ''}
   QUICKTAGS = { 'b' => '*', 'strong' => '*', 
     'i' => '_', 'em' => '_', 'cite' => '??', 's' => '-', 
-    'sup' => '^', 'sub' => '~', 'code' => '@', 'span' => '%'}
+    'sup' => '^', 'sub' => '~', 'code' => '@'}
   
   attr_accessor :result
   attr_accessor :in_block
@@ -67,7 +69,7 @@ class HTMLToTextileParser < SgmlParser
   def make_block_start_pair(tag, attributes)
     attributes = attrs_to_hash(attributes)
     class_style = build_styles_ids_and_classes(attributes)
-    write("#{tag}#{class_style}. ")
+    write("#{tag}#{class_style}")
     start_capture(tag)
   end
   
