@@ -17,11 +17,9 @@ require 'sgml_parser'
 #   parser.feed(input_html)
 #   puts parser.to_textile
 class HTMLToTextileParser < SgmlParser
-
-  # TDH removed span from quicktags and set p to empty string
-  # removed blockquote pair
+# removed blockquote pair
   PAIRS = { 'p' => ''}
-  QUICKTAGS = { 'b' => '*', 'strong' => '*', 
+  QUICKTAGS = { 'b' => '*', 'strong' => '*', 'span' => '',
     'i' => '_', 'em' => '_', 'cite' => '??', 's' => '-', 
     'sup' => '^', 'sub' => '~', 'code' => '@'}
   
@@ -120,7 +118,7 @@ class HTMLToTextileParser < SgmlParser
 
   %w[1 2 3 4 5 6].each do |num|
     define_method "start_h#{num}" do |attributes|
-      make_block_start_pair("h#{num}", attributes)
+      make_block_start_pair("h#{num}. ", attributes)
     end
     
     define_method "end_h#{num}" do
