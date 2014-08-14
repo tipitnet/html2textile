@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
 
   s.require_path = 'lib'
   s.files        = Dir.glob("{lib}/**/*") + %w(example.rb README.mdown)
+
 end
