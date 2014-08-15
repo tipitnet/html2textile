@@ -204,7 +204,7 @@ class HTMLToTextileParser < SgmlParser
 
   def start_img(attrs)
     attrs = attrs_to_hash(attrs)
-    write([" !", attrs["src"], "! "])
+    write(["!", attrs["src"], "!"])
   end
   
   def end_img

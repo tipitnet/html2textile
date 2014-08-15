@@ -40,7 +40,13 @@ class HTMLToTextileParserTest < Test::Unit::TestCase
     							to_textile('<h1>Hello <span style="color: red">world</span></h1>')
   end
 
+  def test_should_parse_image
+    html = "<img src=\"cid:part1.07080105.01060201@tipit.net\" name=\"image.png\" alt=\"\">"
+    assert_equal("!cid:part1.07080105.01060201@tipit.net!", to_textile(html))
+  end
+
   def test_should_parse_heading_with_spaces_and_new_lines
+
     assert_equal "h1. Th is is a headi ng\n\n",
                    to_textile('<h1>  Th
      is is a headi  ng           </h1>')
